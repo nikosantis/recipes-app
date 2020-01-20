@@ -7,3 +7,12 @@
 // Precarga la app
 self.__precacheManifest = [].concat(self.__precacheManifest || [])
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
+
+workbox.routing.registerNavigationRoute(
+  workbox.precaching.getCacheKeyForURL('/index.html')
+)
+
+workbox.routing.registerRoute(
+  /^https?.*/,
+  new workbox.strategies.NetworkFirst()
+)
